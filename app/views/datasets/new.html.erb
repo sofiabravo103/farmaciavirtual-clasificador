@@ -1,0 +1,5 @@
+<h2>Upload a dataset</h2>
+<%= form_for @dataset do |f| %>
+  <%= f.file_field :csv %>
+  <%= f.submit :Upload %>
+<% end %>
