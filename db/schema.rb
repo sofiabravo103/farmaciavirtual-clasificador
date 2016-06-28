@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20160628024326) do
 
   create_table "tweets", force: :cascade do |t|
     t.text     "text"
-    t.integer  "clasification"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "annotation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "dataset_id"
   end
 
