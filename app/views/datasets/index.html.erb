@@ -1,0 +1,24 @@
+<h2>Datasets</h2>
+
+<table>
+  <thead>
+    <td>Id</td>
+    <td>Created at</td>
+    <td>Last update</td>
+    <td>Tweets</td>
+    <td>Annotated</td>
+    <td></td>
+  </thead>
+  <tbody>
+    <% @datasets.each do |d| %>
+    <tr>
+      <td><%= d.id %></td>
+      <td><%= d.created_at.in_time_zone("Caracas").strftime('%F %R') %></td>
+      <td><%= d.updated_at.in_time_zone("Caracas").strftime('%F %R') %></td>
+      <td><%= d.tweets.count %></td>
+      <td><%= d.annotated_tweets %></td>
+      <td></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

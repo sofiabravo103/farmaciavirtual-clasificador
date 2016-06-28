@@ -1,5 +1,23 @@
 class DatasetsController < ApplicationController
   def index
+    @datasets = Dataset.all
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def delete
+  end
+
+  def show
+    @dataset = Dataset.find(params[:id])
+  end
+
+  def new
+    @dataset = Dataset.new
   end
 
   def create
@@ -27,17 +45,4 @@ class DatasetsController < ApplicationController
     end
   end
 
-  def new
-    @dataset = Dataset.new
-  end
-
-  def update
-  end
-
-  def delete
-  end
-
-  def show
-    @dataset = Dataset.find(params[:id])
-  end
 end
