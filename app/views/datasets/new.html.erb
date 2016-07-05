@@ -1,5 +1,15 @@
 <h2>Upload a dataset</h2>
+
 <%= form_for @dataset do |f| %>
   <%= f.file_field :csv %>
+
+  <p>Owner:</p>
+  <% @available_users.each do |user| %>
+    </br>
+    <%= f.label :user, user.email %>
+    <%= f.radio_button(:user, user.email ) %>
+  <% end %>
+
+  </br></br>
   <%= f.submit :Upload %>
 <% end %>

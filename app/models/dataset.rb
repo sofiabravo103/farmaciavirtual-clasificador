@@ -1,5 +1,6 @@
 class Dataset < ActiveRecord::Base
   has_many :tweets
+  belongs_to :user
 
   def annotated_tweets
     count = 0

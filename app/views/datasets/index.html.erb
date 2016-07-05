@@ -7,6 +7,7 @@
     <td>Last update</td>
     <td>Tweets</td>
     <td>Annotated</td>
+    <td>Owner</td>
     <td></td>
   </thead>
   <tbody>
@@ -17,6 +18,7 @@
       <td><%= d.updated_at.in_time_zone("Caracas").strftime('%F %R') %></td>
       <td><%= d.tweets.count %></td>
       <td><%= d.annotated_tweets %></td>
+      <td><%= d.user.email %></td>
       <td><%= button_to('Annotate', edit_dataset_path(d.id), :method => :get) %></td>
       <td><%= button_to('Show', dataset_path(d.id), :method => :get) %></td>
     </tr>

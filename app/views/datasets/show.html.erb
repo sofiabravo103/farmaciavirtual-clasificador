@@ -5,3 +5,5 @@ Tweets: <%= @dataset.tweets.length %> (<%= @dataset.annotated_tweets %> annotate
 </br></br></br>
 
 <%= button_to('Annotate', edit_dataset_path(@dataset.id), :method => :get) %>
+</br>
+<%= button_to('Delete', dataset_path(@dataset.id), :method => :delete) %>

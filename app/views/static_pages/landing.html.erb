@@ -15,12 +15,7 @@
       <tr>
           <td><%= user.email %></td>
           <td><%= user.created_at.in_time_zone("Caracas").strftime('%F %R') %></td>
-          <td>
-            <%= form_for user, url: edit_user_registration_path(user.id), method: :put do |form| %>
-            <%= hidden_field(:user, :approved, value: true) %>
-            <%= submit_tag("Approve") %>
-            <% end %>
-          </td>
+          <td><%= button_to('Approve', approve_path(user.id), :method => :put) %></td>
       </tr>
     <% end %>
   </tbody>

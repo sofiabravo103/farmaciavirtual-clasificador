@@ -7,6 +7,9 @@ class DatasetsController < ApplicationController
 
   def edit
     @dataset = Dataset.find(params[:id])
+    unless current_user.has_role? :admin or current_user.email == @dataset.user.email
+      render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
+    end
     @tweet = @dataset.get_unannotated_tweet
   end
 
@@ -17,7 +20,10 @@ class DatasetsController < ApplicationController
     redirect_to edit_dataset_path(@dataset.id)
   end
 
-  def delete
+  def destroy
+    @dataset = Dataset.find(params[:id])
+    @dataset.destroy!
+    redirect_to datasets_path
   end
 
   def show
@@ -26,11 +32,13 @@ class DatasetsController < ApplicationController
 
   def new
     @dataset = Dataset.new
+    @available_users = User.all
   end
 
   def create
-    if params[:dataset].include? :csv
-      @dataset = Dataset.create!
+    if params[:dataset].include? :csv and params[:dataset].include? :user
+      @owner = User.find_by(email: params[:dataset][:user])
+      @dataset = Dataset.create!(user: @owner)
 
       inserts = []
       params[:dataset][:csv].read.each_line do |line|

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
 
+  # non-restful route to approve new users
+  # without interfering with devise
+  put 'users/:id/approve' => 'users#update', as: :approve
+
+  devise_for :users
   resources :datasets
   root 'static_pages#landing'
 

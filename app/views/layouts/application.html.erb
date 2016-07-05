@@ -10,7 +10,7 @@
 <body>
 
 <%= yield %>
-
+<hr>
 <% if current_user %>
 </br>
 <%= button_to('View Datasets', datasets_path, :method => :get) %>
