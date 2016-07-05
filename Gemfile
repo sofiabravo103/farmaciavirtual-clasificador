@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 #User added gems
 gem 'devise'
-
+gem 'rolify'
 
 #Template gems
 
