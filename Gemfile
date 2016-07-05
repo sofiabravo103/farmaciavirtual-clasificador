@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+#User added gems
+gem 'devise'
+
+
+#Template gems
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
