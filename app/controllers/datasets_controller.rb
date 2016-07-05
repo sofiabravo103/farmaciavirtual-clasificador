@@ -1,4 +1,6 @@
 class DatasetsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @datasets = Dataset.all
   end

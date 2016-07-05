@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :datasets
-  root 'datasets#new'
+  root 'static_pages#landing'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
