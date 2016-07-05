@@ -10,6 +10,10 @@
 <body>
 
 <%= yield %>
+</br>
+<%= button_to('View Datasets', datasets_path, :method => :get) %>
+</br>
+<%= button_to('Create Dataset', new_dataset_path, :method => :get) %>
 
 </body>
 </html>

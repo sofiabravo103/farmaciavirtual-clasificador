@@ -1,3 +1,7 @@
-<h2>Dataset - <%= @dataset.created_at.in_time_zone("Caracas").strftime('%F %R') %></h2>
+<h2>Dataset <%= @dataset.id %> (<%= @dataset.created_at.in_time_zone("Caracas").strftime('%F %R') %>)</h2>
 
 Tweets: <%= @dataset.tweets.length %> (<%= @dataset.annotated_tweets %> annotated).
+
+</br></br></br>
+
+<%= button_to('Annotate', edit_dataset_path(@dataset.id), :method => :get) %>

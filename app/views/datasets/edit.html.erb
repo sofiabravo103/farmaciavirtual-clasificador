@@ -1,0 +1,35 @@
+<h2>Annotate for dataset <%= @dataset.id%></h2>
+
+<h4>Text:</h4><p><%= @tweet.text %></p>
+<table>
+  <tbody>
+    <td>
+      <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
+      <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
+      <%= hidden_field(:dataset, :annotation, value: 0) %>
+      <%= submit_tag("Irrelevant") %>
+      <% end %>
+    </td>
+    <td>
+      <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
+      <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
+      <%= hidden_field(:dataset, :annotation, value: 1) %>
+      <%= submit_tag("Requesting") %>
+      <% end %>
+    </td>
+    <td>
+      <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
+      <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
+      <%= hidden_field(:dataset, :annotation, value: 2) %>
+      <%= submit_tag("Offering") %>
+      <% end %>
+    </td>
+    <td>
+      <%= button_to("I don't know", edit_dataset_path(@dataset.id), :method => :get) %>
+    </td>
+  </tbody>
+</table>
+
+</br></br></br>
+
+<%= button_to('Show Dataset', dataset_path(@dataset.id), :method => :get) %>

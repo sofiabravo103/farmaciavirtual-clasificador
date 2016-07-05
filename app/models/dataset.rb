@@ -6,4 +6,10 @@ class Dataset < ActiveRecord::Base
     self.tweets.each {|t| count += 1 if t.annotation != nil}
     count
   end
+
+  def get_unannotated_tweet
+    self.tweets.shuffle.each do |t|
+      return t if t.annotation == nil
+    end
+  end
 end

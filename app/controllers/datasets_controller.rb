@@ -4,9 +4,15 @@ class DatasetsController < ApplicationController
   end
 
   def edit
+    @dataset = Dataset.find(params[:id])
+    @tweet = @dataset.get_unannotated_tweet
   end
 
   def update
+    @dataset = Dataset.find(params[:id])
+    @tweet = Tweet.find(params[:dataset][:tweet_id])
+    @tweet.update!(annotation: params[:dataset][:annotation])
+    redirect_to edit_dataset_path(@dataset.id)
   end
 
   def delete
