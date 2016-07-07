@@ -2,7 +2,8 @@
 <html>
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
-  <title>Clasificador</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" type="text/css">
+  <title><%= (yield :title).capitalize %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -17,8 +18,8 @@
     <td><%= button_to('Create Dataset', new_dataset_path, :method => :get) %></td>
     <td><%= button_to('Log out', destroy_user_session_path, :method => :delete) %></td>
   </table>
-  <% end %>
   <hr>
+  <% end %>
 
   <%= yield %>
 
