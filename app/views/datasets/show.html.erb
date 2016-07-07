@@ -1,8 +1,14 @@
 <h2>Dataset <%= @dataset.id %> (<%= @dataset.created_at.in_time_zone("Caracas").strftime('%F %R') %>)</h2>
 
-<p>Tweets: <%= @dataset.tweets.length %> (<%= @dataset.annotated_tweets.size %> annotated).</p>
+
+<% ready = @dataset.tweets.size == @dataset.annotated_tweets.size %>
+<% if ready %>
+  <p>Tweets: <%= @dataset.tweets.length %></p><p><strong>All tweets are annotated, thanks!</strong></p>
+<% else%>
+  <p>Tweets: <%= @dataset.tweets.length %> (<%= @dataset.annotated_tweets.size %> annotated).</p>
+<% end %>
 <table>
-  <td><%= button_to('Annotate', edit_dataset_path(@dataset.id), :method => :get) %></td>
+  <td><%= button_to('Annotate', edit_dataset_path(@dataset.id), :method => :get, :disabled => ready,) %></td>
   <td><%= button_to('Delete', dataset_path(@dataset.id), :method => :delete) %></td>
 </table>
 

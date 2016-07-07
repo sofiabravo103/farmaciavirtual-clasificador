@@ -10,5 +10,6 @@ class Dataset < ActiveRecord::Base
     self.tweets.shuffle.each do |t|
       return t if t.annotation == nil
     end
+    return nil
   end
 end

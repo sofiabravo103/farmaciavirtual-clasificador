@@ -10,11 +10,16 @@ class DatasetsController < ApplicationController
     unless current_user.has_role? :admin or current_user.email == @dataset.user.email
       render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
     end
-    @tweet = @dataset.get_unannotated_tweet
+    unless @tweet = @dataset.get_unannotated_tweet
+      redirect_to dataset_path(@dataset.id)
+    end
   end
 
   def update
     @dataset = Dataset.find(params[:id])
+    unless current_user.has_role? :admin or current_user.email == @dataset.user.email
+      render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
+    end
     @tweet = Tweet.find(params[:dataset][:tweet_id])
     @tweet.update!(annotation: params[:dataset][:annotation])
     if params[:dataset][:annotation] != ""
