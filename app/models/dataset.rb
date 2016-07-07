@@ -3,9 +3,7 @@ class Dataset < ActiveRecord::Base
   belongs_to :user
 
   def annotated_tweets
-    count = 0
-    self.tweets.each {|t| count += 1 if t.annotation != nil}
-    count
+    self.tweets.where.not(annotation: nil)
   end
 
   def get_unannotated_tweet

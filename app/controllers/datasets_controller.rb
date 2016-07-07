@@ -17,7 +17,11 @@ class DatasetsController < ApplicationController
     @dataset = Dataset.find(params[:id])
     @tweet = Tweet.find(params[:dataset][:tweet_id])
     @tweet.update!(annotation: params[:dataset][:annotation])
-    redirect_to edit_dataset_path(@dataset.id)
+    if params[:dataset][:annotation] != ""
+      redirect_to edit_dataset_path(@dataset.id)
+    else
+      redirect_to dataset_path(@dataset.id)
+    end
   end
 
   def destroy
