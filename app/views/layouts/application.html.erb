@@ -16,10 +16,9 @@
   <td><%= button_to('Create Dataset', new_dataset_path, :method => :get) %></td>
   <td><%= button_to('Log out', destroy_user_session_path, :method => :delete) %></td>
 </table>
-</br>
 <% end %>
-
 <hr>
+
 <%= yield %>
 
 </body>
