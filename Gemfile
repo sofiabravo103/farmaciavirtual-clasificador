@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'rolify'
 gem 'pg'
-
+gem 'rails_12factor'
 #Template gems
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
