@@ -81,11 +81,12 @@ class DatasetsController < ApplicationController
   def bulk_insert_tweets(tweets)
     ActiveRecord::Base.transaction do
       tweets.each do |t_info|
-        Tweet.create!(
+        t = Tweet.new(
           dataset: @dataset,
           text: t_info['text'],
           twitter_id: t_info['id']
         )
+        t.save
       end
     end
   end
