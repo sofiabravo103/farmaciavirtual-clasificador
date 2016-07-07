@@ -21,3 +21,25 @@
   </tbody>
 </table>
 <% end %>
+
+<% if @approved_users %>
+<h3>Approved users</h3>
+<table>
+  <thead>
+    <tr>
+      <td>Email</td>
+      <td>Added on</td>
+      <td>Actions</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @approved_users.each do |user| %>
+      <tr>
+          <td><%= user.email %></td>
+          <td><%= user.created_at.in_time_zone("Caracas").strftime('%F %R') %></td>
+          <td><%= button_to('Make admin', make_admin_path(user.id), :method => :put) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

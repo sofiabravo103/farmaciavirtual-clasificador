@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   # non-restful route to approve new users
   # without interfering with devise
-  put 'users/:id/approve' => 'users#update', as: :approve
+  put 'users/:id/approve' => 'users#approve', as: :approve
+  put 'users/:id/make_admin' => 'users#make_admin', as: :make_admin
 
   devise_for :users
   resources :datasets
