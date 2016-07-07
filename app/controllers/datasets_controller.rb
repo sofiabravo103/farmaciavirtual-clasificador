@@ -83,7 +83,8 @@ class DatasetsController < ApplicationController
       tweets.each do |t_info|
         Tweet.create!(
           dataset: @dataset,
-          text: t_info['text']
+          text: t_info['text'],
+          twitter_id: t_info['id']
         )
       end
     end
