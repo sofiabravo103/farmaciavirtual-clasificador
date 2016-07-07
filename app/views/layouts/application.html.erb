@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
   <title>Clasificador</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -9,17 +10,19 @@
 </head>
 <body>
 
-<% if current_user %>
-<table>
-  <td><%= button_to('Home', root_path, :method => :get) %></td>
-  <td><%= button_to('View Datasets', datasets_path, :method => :get) %></td>
-  <td><%= button_to('Create Dataset', new_dataset_path, :method => :get) %></td>
-  <td><%= button_to('Log out', destroy_user_session_path, :method => :delete) %></td>
-</table>
-<% end %>
-<hr>
+  <% if current_user %>
+  <table>
+    <td><%= button_to('Home', root_path, :method => :get) %></td>
+    <td><%= button_to('View Datasets', datasets_path, :method => :get) %></td>
+    <td><%= button_to('Create Dataset', new_dataset_path, :method => :get) %></td>
+    <td><%= button_to('Log out', destroy_user_session_path, :method => :delete) %></td>
+  </table>
+  <% end %>
+  <hr>
 
-<%= yield %>
+  <%= yield %>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
