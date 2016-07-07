@@ -1,8 +1,12 @@
 <h2>Dataset <%= @dataset.id %> (<%= @dataset.created_at.in_time_zone("Caracas").strftime('%F %R') %>)</h2>
 
-Tweets: <%= @dataset.tweets.length %> (<%= @dataset.annotated_tweets.size %> annotated).
+<p>Tweets: <%= @dataset.tweets.length %> (<%= @dataset.annotated_tweets.size %> annotated).</p>
+<table>
+  <td><%= button_to('Annotate', edit_dataset_path(@dataset.id), :method => :get) %></td>
+  <td><%= button_to('Delete', dataset_path(@dataset.id), :method => :delete) %></td>
+</table>
+
 <% if  @dataset.annotated_tweets.size  > 0 %>
-</br></br></br>
 <h3>Annotations</h3>
 <table>
   <thead>
@@ -31,7 +35,3 @@ Tweets: <%= @dataset.tweets.length %> (<%= @dataset.annotated_tweets.size %> ann
   </tbody>
 </table>
 <% end %>
-</br></br></br>
-<%= button_to('Annotate', edit_dataset_path(@dataset.id), :method => :get) %>
-</br>
-<%= button_to('Delete', dataset_path(@dataset.id), :method => :delete) %>
