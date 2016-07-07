@@ -21,7 +21,6 @@ module ClasificadorMeds
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callback
-    config.web_console.development_only = false
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
