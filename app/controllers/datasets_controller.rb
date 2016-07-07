@@ -36,6 +36,11 @@ class DatasetsController < ApplicationController
   end
 
   def new
+    unless current_user.has_role? :admin
+      render(:file => File.join(Rails.root, 'public/403.html'), \
+        :status => 403, :layout => false)
+      return
+    end
     @dataset = Dataset.new
     @available_users = User.all
   end
@@ -71,6 +76,7 @@ class DatasetsController < ApplicationController
   end
 
   private
+
 
   def bulk_insert_tweets(tweets)
     ActiveRecord::Base.transaction do
