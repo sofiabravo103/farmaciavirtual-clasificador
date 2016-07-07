@@ -9,6 +9,8 @@
     <td>Annotated</td>
     <td>Owner</td>
     <td></td>
+    <td></td>
+    <td></td>
   </thead>
   <tbody>
     <% @datasets.each do |d| %>
@@ -21,6 +23,7 @@
       <td><%= d.user.email %></td>
       <td><%= button_to('Annotate', edit_dataset_path(d.id), :method => :get) %></td>
       <td><%= button_to('Show', dataset_path(d.id), :method => :get) %></td>
+      <td><%= button_to('Delete', dataset_path(d.id), :method => :delete) %></td>
     </tr>
     <% end %>
   </tbody>

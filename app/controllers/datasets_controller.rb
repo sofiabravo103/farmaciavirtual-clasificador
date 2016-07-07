@@ -21,6 +21,11 @@ class DatasetsController < ApplicationController
   end
 
   def destroy
+    unless current_user.has_role? :admin
+      render(:file => File.join(Rails.root, 'public/403.html'), \
+        :status => 403, :layout => false)
+      return
+    end
     @dataset = Dataset.find(params[:id])
     @dataset.destroy!
     redirect_to datasets_path
@@ -36,28 +41,45 @@ class DatasetsController < ApplicationController
   end
 
   def create
+    unless current_user.has_role? :admin
+      render(:file => File.join(Rails.root, 'public/403.html'), \
+        :status => 403, :layout => false)
+      return
+    end
     if params[:dataset].include? :csv and params[:dataset].include? :user
       @owner = User.find_by(email: params[:dataset][:user])
       @dataset = Dataset.create!(user: @owner)
 
-      inserts = []
-      params[:dataset][:csv].read.each_line do |line|
-        text = line.split(',')[1].dup.force_encoding(Encoding::UTF_8)
+      good_text = params[:dataset][:csv].read.encode('UTF-8', 'binary', \
+        invalid: :replace, undef: :replace, replace: '').gsub("u'","'")
 
-        #replace quotes and parenthesis for db insertion
-        text = text.tr("'", '').tr('"','').tr("`",'').tr("(",'').tr(")",'')
+      tweets = []
 
-        inserts.push \
-          "('#{@dataset.id}', '#{text}', '#{DateTime.now}', '#{DateTime.now}')"
+      good_text.each_line do |line|
+        tweet_parsed_info = {}
+        text = line.tr("\n",'').split(';').each do |item|
+          key, *value = item.split(':', 2)
+          tweet_parsed_info[key] = value[0] if key
+        end
+        tweets << tweet_parsed_info
       end
-
-      sql = "INSERT INTO 'tweets' "+\
-        "(`dataset_id`, `text`, `updated_at`, `created_at`) "+\
-        "VALUES #{inserts.join(", ")}"
-      ActiveRecord::Base.connection.execute(sql)
+      bulk_insert_tweets(tweets)
 
       redirect_to dataset_path(@dataset.id)
     else
+    end
+  end
+
+  private
+
+  def bulk_insert_tweets(tweets)
+    ActiveRecord::Base.transaction do
+      tweets.each do |t_info|
+        Tweet.create!(
+          dataset: @dataset,
+          text: t_info['text']
+        )
+      end
     end
   end
 

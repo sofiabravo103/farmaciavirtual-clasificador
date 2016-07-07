@@ -1,5 +1,5 @@
 class Dataset < ActiveRecord::Base
-  has_many :tweets
+  has_many :tweets, dependent: :destroy
   belongs_to :user
 
   def annotated_tweets
