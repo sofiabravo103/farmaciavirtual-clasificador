@@ -15,7 +15,7 @@ Tweets: <%= @dataset.tweets.length %> (<%= @dataset.annotated_tweets.size %> ann
     </tr>
   </thead>
   <tbody>
-    <% @dataset.annotated_tweets.each do |t| %>
+    <% @dataset.annotated_tweets.order(updated_at: :DESC).each do |t| %>
     <tr>
       <td><%= t.id %></td>
       <td><%= t.updated_at.in_time_zone("Caracas").strftime('%F %R')%></td>
