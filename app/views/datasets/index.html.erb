@@ -2,32 +2,40 @@
 <% content_for :dataset_active do %>active<% end %>
 <h2>Datasets</h2>
 
-<table>
-  <thead>
-    <td>Id</td>
-    <td>Created at</td>
-    <td>Last update</td>
-    <td>Tweets</td>
-    <td>Annotated</td>
-    <td>Owner</td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </thead>
-  <tbody>
-    <% @datasets.each do |d| %>
-    <% ready = d.tweets.size == d.annotated_tweets.size %>
-    <tr>
-      <td><%= d.id %></td>
-      <td><%= d.created_at.in_time_zone("Caracas").strftime('%F %R') %></td>
-      <td><%= d.updated_at.in_time_zone("Caracas").strftime('%F %R') %></td>
-      <td><%= d.tweets.count %></td>
-      <td><%= d.annotated_tweets.size %></td>
-      <td><%= d.user.email %></td>
-      <td><%= button_to('Annotate', edit_dataset_path(d.id), :method => :get, :disabled => ready) %></td>
-      <td><%= button_to('Show', dataset_path(d.id), :method => :get) %></td>
-      <td><%= button_to('Delete', dataset_path(d.id), :method => :delete) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="jumbotron">
+  <table class="table-hover button-table" width="100%">
+    <thead>
+      <td>Id</td>
+      <td>Created at</td>
+      <td>Last update</td>
+      <td>Tweets</td>
+      <td>Annotated</td>
+      <td>Owner</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </thead>
+    <tbody>
+      <% @datasets.each do |d| %>
+      <% ready = d.tweets.size == d.annotated_tweets.size %>
+      <tr>
+        <td><%= d.id %></td>
+        <td><%= d.created_at.in_time_zone("Caracas").strftime('%F %R') %></td>
+        <td><%= d.updated_at.in_time_zone("Caracas").strftime('%F %R') %></td>
+        <td><%= d.tweets.count %></td>
+        <td><%= d.annotated_tweets.size %></td>
+        <td><%= d.user.email %></td>
+        <td><%= button_to('Annotate', edit_dataset_path(d.id), :method => :get, :disabled => ready, class:"btn btn-primary") %></td>
+        <td><%= button_to('Show', dataset_path(d.id), :method => :get, class:"btn btn-success") %></td>
+        <td><%= button_to('Delete', dataset_path(d.id), :method => :delete, class:"btn btn-danger") %></td>
+        <td>
+          <% if @winners.include? d.user.id %>
+          <%= image_tag("crown.png", size: "40x40") %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

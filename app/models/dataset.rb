@@ -12,4 +12,9 @@ class Dataset < ActiveRecord::Base
     end
     return nil
   end
+
+  def progress
+    self.annotated_tweets.size * 100 / self.tweets.size
+  end
+
 end

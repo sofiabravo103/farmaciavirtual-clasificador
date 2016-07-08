@@ -3,6 +3,17 @@ class DatasetsController < ApplicationController
 
   def index
     @datasets = Dataset.all
+    winner_amount = 0
+    @winners = []
+    User.all.each do |u|
+      ann = u.annotations
+      if ann > winner_amount
+        winner_amount = ann
+        @winners = [u.id]
+      elsif ann == winner_amount
+        @winners << u.id
+      end
+    end
   end
 
   def edit

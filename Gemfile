@@ -5,7 +5,7 @@ gem 'devise'
 gem 'rolify'
 gem 'pg'
 gem 'rails_12factor'
-gem 'font-awesome-less'
+
 #Template gems
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

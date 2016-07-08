@@ -34,4 +34,12 @@ class User < ActiveRecord::Base
     recoverable
   end
 
+  def annotations
+    if self.datasets
+      self.datasets.inject(0) {|sum, d| sum + d.annotated_tweets.size }
+    else
+      0
+    end
+  end
+
 end
