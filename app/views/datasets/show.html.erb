@@ -1,4 +1,5 @@
 <% content_for :title do %>dataset | show<% end %>
+<% content_for :dataset_active do %>active<% end %>
 <h2>Dataset <%= @dataset.id %> (<%= @dataset.created_at.in_time_zone("Caracas").strftime('%F %R') %>)</h2>
 
 

@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   # without interfering with devise
   put 'users/:id/approve' => 'users#approve', as: :approve
   put 'users/:id/make_admin' => 'users#make_admin', as: :make_admin
+  get 'project' => 'static_pages#project', as: :project
+  get 'instructions' => 'static_pages#instructions', as: :instructions
 
   devise_for :users
   resources :datasets
-  root 'static_pages#landing'
+  root 'static_pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

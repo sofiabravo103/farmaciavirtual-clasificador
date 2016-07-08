@@ -1,0 +1,18 @@
+<% content_for :title do %>Instructions<% end %>
+<% content_for :instr_active do %>active<% end %>
+
+<h4>First of all thanks for helping out! Remind me to buy you a beer sometime.</h4>
+<p>To start annotating tweets click on the <strong>view datasets button</strong> above, find the one assigned to you and click annotate.</p>
+<!--  class="lead text-justify" -->
+<p>The instructions are simple: <strong>classify according to the intention of the tweet.</strong> It does not matter if the tweet is requesting hot dogs or a presidential referendum, if it requests something then classify it as requesting. Same for offering. You will find that often many tweets indicate a location in which you can find a certain drug. Again the intention is what matters, so these cases should be classified as offering. Finally when you find anything that either does not provide enough information to classify it or seems to relate to a completely different topic (such as news or thank you replies) then classify it as irrelevant. <strong>Do no be afraid to classify as irrelevant.</strong> It is a very important category. Be wary of making your decision based on key words only, for example <em>todo el mundo requiere medicinas hoy en dia</em>, would be an irrelevant tweet, regardless of the word <em>requiere</em> which would seem to be always associated with requesting. One more thing, <strong>if you make a mistake annotating you can reset that annotation</strong>, just look the tweet up in the show dataset button and click reset.</p>
+
+<p><strong>Important! </strong> For the moment there is no way to include <strong>images or outside links</strong> on the learning algorithms, so please make your classification based on the tweet's text only. You can check out the original tweet on twitter.com if you are not completly sure what the tweet means (venezuelans tweet weird stuff in weird ways), but if the intention of the tweet is only visible through an image or link then classify as irrelevant. It's ok to classify as requesting/offering if the intention is in the text but the name and specifications of the medicine are inside a picture. Remember that we just want the algorithms to learn to differentiate offering text from requesting text.</p>
+
+<p><strong>Special cases:</strong></p>
+<ol>
+  <li>Some tweets offer trading meds for something else (other meds, hot dogs, a presidential referendum, etc, it does not matter). In its core this is actually an offering, so annotate as such.</li>
+  <li>Some tweets request help to spread the word such as <em>ayudanos a difundir</em>. This tweet might be considered as requesting something (help), but since it is a really common special case we can treat it an exception. Therefore any tweet whose text consists only of requesting help to spread te word should be annotated as irrelevant.</li>
+</ol>
+
+
+<p>That's it, have fun! And please don't hesitate to ask when you're not sure how to classify. Again, venezuelans tweet weird stuff in weird ways.</p>
