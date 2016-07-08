@@ -16,44 +16,44 @@
   <a href="https://twitter.com/any/status/<%= @tweet.twitter_id %>" target="_blank" class="btn btn-primary btn-sm" role="button">View on Twitter site</a>
   </br></br>
   <div class="row">
-    <div class="col-xs-6 col-md-3">
+    <div class="col-xs-3">
       <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
         <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
         <%= hidden_field(:dataset, :annotation, value: 0) %>
-        <%= button_tag(type: "submit", class: "btn btn-primary btn-lg") do %>
-          <%= image_tag("irrelevant.png", size: "50x50") %>
-          </br></br>
-          <span>Irrelevant</span>
+        <%= button_tag(type: "submit", class: "btn btn-primary btn-lg button-annotate") do %>
+          <%= image_tag("irrelevant.png", size: "50x50", class:"square-annotate-img") %>
+          </br>
+          <span class="span-annotate">Irrelevant</span>
         <% end %>
       <% end %>
     </div>
-    <div class="col-xs-6 col-md-3">
+    <div class="col-xs-3">
       <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
         <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
         <%= hidden_field(:dataset, :annotation, value: 1) %>
-        <%= button_tag(type: "submit", class: "btn btn-primary btn-lg") do %>
-          <%= image_tag("request.png", size: "55x50") %>
-          </br></br>
-          <span>Requesting</span>
+        <%= button_tag(type: "submit", class: "btn btn-primary btn-lg button-annotate") do %>
+          <%= image_tag("request.png", size: "55x50", class:"not-square-annotate-img") %>
+          </br>
+          <span class="span-annotate">Request</span>
         <% end %>
       <% end %>
     </div>
-    <div class="col-xs-6 col-md-3">
+    <div class="col-xs-3">
       <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
         <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
         <%= hidden_field(:dataset, :annotation, value: 2) %>
-        <%= button_tag(type: "submit", class: "btn btn-primary btn-lg") do %>
-          <%= image_tag("offer.png", size: "55x50") %>
-          </br></br>
-          <span>Offering</span>
+        <%= button_tag(type: "submit", class: "btn btn-primary btn-lg button-annotate") do %>
+          <%= image_tag("offer.png", size: "55x50", class:"not-square-annotate-img") %>
+          </br>
+          <span class="span-annotate">Offer</span>
         <% end %>
       <% end %>
     </div>
-    <div class="col-xs-6 col-md-3">
-      <%= button_tag(edit_dataset_path(@dataset.id), :method => :get, class: "btn btn-primary btn-lg") do %>
-        <%= image_tag("doubt.png", size: "50x50") %>
-        </br></br>
-        <span>I don't know</span>
+    <div class="col-xs-3">
+      <%= button_tag(edit_dataset_path(@dataset.id), :method => :get, class: "btn btn-primary btn-lg button-annotate") do %>
+        <%= image_tag("doubt.png", size: "50x50", class:"square-annotate-img") %>
+        </br>
+        <span class="span-annotate">Not sure</span>
       <% end %>
     </div>
   </div>
