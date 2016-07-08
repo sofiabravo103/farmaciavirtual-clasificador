@@ -1,40 +1,60 @@
 <% content_for :title do %>dataset | annotate<% end %>
 <% content_for :dataset_active do %>active<% end %>
-<h2>Annotate for dataset <%= @dataset.id%></h2>
 
-<h4>Text:</h4>
-<p><%= @tweet.text %></p>
-<a href="https://twitter.com/marianacdiazt/status/<%= @tweet.twitter_id %>" target="_blank">View on Twitter site</a>
-</br></br>
-<table>
-  <tbody>
-    <td>
-      <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
-      <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
-      <%= hidden_field(:dataset, :annotation, value: 0) %>
-      <%= submit_tag("Irrelevant") %>
-      <% end %>
-    </td>
-    <td>
-      <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
-      <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
-      <%= hidden_field(:dataset, :annotation, value: 1) %>
-      <%= submit_tag("Requesting") %>
-      <% end %>
-    </td>
-    <td>
-      <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
-      <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
-      <%= hidden_field(:dataset, :annotation, value: 2) %>
-      <%= submit_tag("Offering") %>
-      <% end %>
-    </td>
-    <td>
-      <%= button_to("I don't know", edit_dataset_path(@dataset.id), :method => :get) %>
-    </td>
-  </tbody>
-</table>
+<div class="row">
+  <h2>Annotate for dataset <strong><%= @dataset.id%></strong></h2>
+</div>
+<div class="row">
+  <%= button_to('Show Dataset', dataset_path(@dataset.id), :method => :get, class: "btn btn-success") %>
+</div>
 
-</br></br></br>
+</br>
 
-<%= button_to('Show Dataset', dataset_path(@dataset.id), :method => :get) %>
+<div class="row">
+  <div class="jumbotron">
+  <p class="lead"><%= @tweet.text %></p>
+  <a href="https://twitter.com/any/status/<%= @tweet.twitter_id %>" target="_blank" class="btn btn-primary btn-sm" role="button">View on Twitter site</a>
+  </br></br>
+  <div class="row">
+    <div class="col-xs-6 col-md-3">
+      <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
+        <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
+        <%= hidden_field(:dataset, :annotation, value: 0) %>
+        <%= button_tag(type: "submit", class: "btn btn-primary btn-lg") do %>
+          <%= image_tag("irrelevant.png", size: "50x50") %>
+          </br></br>
+          <span>Irrelevant</span>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
+        <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
+        <%= hidden_field(:dataset, :annotation, value: 1) %>
+        <%= button_tag(type: "submit", class: "btn btn-primary btn-lg") do %>
+          <%= image_tag("request.png", size: "55x50") %>
+          </br></br>
+          <span>Requesting</span>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
+        <%= hidden_field(:dataset, :tweet_id, value: @tweet.id) %>
+        <%= hidden_field(:dataset, :annotation, value: 2) %>
+        <%= button_tag(type: "submit", class: "btn btn-primary btn-lg") do %>
+          <%= image_tag("offer.png", size: "55x50") %>
+          </br></br>
+          <span>Offering</span>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <%= button_tag(edit_dataset_path(@dataset.id), :method => :get, class: "btn btn-primary btn-lg") do %>
+        <%= image_tag("doubt.png", size: "50x50") %>
+        </br></br>
+        <span>I don't know</span>
+      <% end %>
+    </div>
+  </div>
+</div>
