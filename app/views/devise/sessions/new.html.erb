@@ -1,38 +1,14 @@
 <% content_for :title do %>Welcome!<% end %>
+<% content_for :project_active do %>active<% end %>
+<%= render "devise/devise_nav_bar" %>
 
-
-<nav class="navbar navbar-default">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand">Virtual Farmacy</a>
-    </div>
-
-    <div class="navbar-form navbar-right">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="form-group">
-          <%= f.email_field :email, autofocus: true, class:"form-control", placeholder:"email" %>
-        </div>
-        <div class="form-group">
-          <%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder: "password" %>
-        </div>
-        <%= f.submit "Log in", class:"btn btn-default" %>
-      <% end %>
-    </div>
-  </div><!-- /.container -->
-</nav>
-
-<div class="container">
+<!-- <div class="container">
   <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, id: "flash_#{name}" %>
 </br>
-<% end %>
+<% end %> -->
 
-<%= render "devise/shared/links" %>
+
+<div class="container">
+  <%= render 'static_pages/project_text' %>
 </div>

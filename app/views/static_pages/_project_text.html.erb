@@ -1,0 +1,16 @@
+<p class="lead">So yeah, <a href="https://www.theguardian.com/world/2016/may/18/venezuelans-barter-for-leftover-medicine-as-economic-crisis-deepens" target="_blank">this is a thing.</a></p>
+
+<p class="text-justify">To help with the Venezuelan <strong>prescription drugs crisis</strong> I am building a non-profitable platform to connect people requesting prescription drugs with people who might have them for sale, trade or donation. Currently Twitter is the most widely used platform to find drugs, but it's inefficient since there are a lot of different hashtags and accounts used to publish availability/necessity and no one can read all Twitter.
+</br></br>
+My plan is to build a machine learning classifier to detect relevant tweets (starting from a API search for tweets from drug crisis known accounts and hashtags) and classify them as requesting drugs or offering drugs. Afterwards I will build a platform to connect the users via a website, email, SMS, tweets, anything! But first I need to train the machine learning algorithm.
+</br></br>
+If you’re interested in learning about the specifics of the project <%= mail_to "sofiabravo103@gmail.com" do %>email me<% end %> and I will explain the implementation details (as soon as I’m done tweaking it).</p>
+
+<p class="lead">How can you help? There are a lot of ways.</p>
+
+<ol class="text-justify">
+  <li><strong>You can help with annotation</strong>. The algorithm needs a lot of annotated tweets to learn from. To help <%= link_to "request an account", new_registration_path(:user) %> and wait for admin approval, after that you will be assigned with a set of tweets for annotation. You then classify these tweets on the website following the instructions provided. </li>
+  <li>One of the major improvements in classification would come from filtering tweets using a <strong>list of venezuelan known prescription drug names and active components</strong>. So you can distinguish from a tweet requesting a hot dog from a tweet requesting something relevant. I am having trouble finding a digital source of information for this, so if there is anything you can suggest I would appreciate it.</li>
+  <li> If you have an <strong>advance knowledge in machine learning supervised classification of short documents</strong> <%= mail_to "sofiabravo103@gmail.com" do %>email me<% end %>, I could really use your input.</li>
+  <li> If you find anything that needs fixing in this website please report the issue on <a href="https://github.com/sofiabravo103/virtualfarmacy-classifier/issues" target="_blank">Github</a> (typos and grammar/spelling mistakes included!).</li>
+</ol>
