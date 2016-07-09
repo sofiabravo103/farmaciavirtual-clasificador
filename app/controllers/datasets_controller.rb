@@ -18,11 +18,14 @@ class DatasetsController < ApplicationController
 
   def edit
     @dataset = Dataset.find(params[:id])
+    # not admin
     unless current_user.has_role? :admin or current_user.email == @dataset.user.email
       render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
     end
+
+    # dataset is done
     unless @tweet = @dataset.get_unannotated_tweet
-      redirect_to dataset_path(@dataset.id)
+      redirect_to dataset_path(@dataset.id, tweet_id: @tweet.id)
     end
   end
 
@@ -32,7 +35,7 @@ class DatasetsController < ApplicationController
       render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
     end
     @tweet = Tweet.find(params[:dataset][:tweet_id])
-    @tweet.update!(annotation: params[:dataset][:annotation])
+    @tweet.update(annotation: params[:dataset][:annotation])
     if params[:dataset][:annotation] != ""
       redirect_to edit_dataset_path(@dataset.id)
     else

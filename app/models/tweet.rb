@@ -1,5 +1,6 @@
 class Tweet < ActiveRecord::Base
   belongs_to :dataset
+  validates_inclusion_of :annotation, :in => [0, 1, 2]
 
   def readable_annotation
     case self.annotation
@@ -9,8 +10,6 @@ class Tweet < ActiveRecord::Base
       return 'request'
     when 2
       return 'offer'
-    else
-      return ''
     end
   end
 end
