@@ -27,14 +27,14 @@
         <td><%= d.tweets.count %></td>
         <td><%= d.annotated_tweets.size %></td>
         <td><%= d.user.email %></td>
-        <td><%= button_to('Annotate', edit_dataset_path(d.id), :method => :get, :disabled => ready, class:"btn btn-primary") %></td>
-        <td><%= button_to('Show', dataset_path(d.id), :method => :get, class:"btn btn-success") %></td>
-        <td><%= button_to('Delete', dataset_path(d.id), :method => :delete, class:"btn btn-danger") %></td>
         <td>
           <% if @winners.include? d.user.id %>
           <%= image_tag("crown.png", size: "40x40") %>
           <% end %>
         </td>
+        <td><%= button_to('Annotate', edit_dataset_path(d.id), :method => :get, :disabled => ready, class:"btn btn-primary") %></td>
+        <td><%= button_to('Show', dataset_path(d.id), :method => :get, class:"btn btn-success") %></td>
+        <td><%= button_to('Delete', dataset_path(d.id), :method => :delete,  data: { confirm: "Are you sure?" }, class:"btn btn-danger") %></td>
       </tr>
       <% end %>
     </tbody>
