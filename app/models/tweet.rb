@@ -9,6 +9,8 @@ class Tweet < ActiveRecord::Base
       return 'request'
     when 2
       return 'offer'
+    else
+      return ''
     end
   end
 end
