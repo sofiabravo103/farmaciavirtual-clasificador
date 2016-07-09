@@ -5,41 +5,48 @@
 
 <% ready = @dataset.tweets.size == @dataset.annotated_tweets.size %>
 <% if ready %>
-  <p>Tweets: <%= @dataset.tweets.length %></p><p><strong>All tweets are annotated, thanks!</strong></p>
+  <p>Tweets: <%= @dataset.tweets.length %></p><p><strong>All done, thanks!</strong></p>
 <% else%>
   <p>Tweets: <%= @dataset.tweets.length %> (<%= @dataset.annotated_tweets.size %> annotated).</p>
 <% end %>
-<table>
-  <td><%= button_to('Annotate', edit_dataset_path(@dataset.id), :method => :get, :disabled => ready,) %></td>
-  <td><%= button_to('Delete', dataset_path(@dataset.id), :method => :delete) %></td>
-</table>
-
+<div class="row">
+  <div class="col-xs-1">
+    <%= button_to('Annotate', edit_dataset_path(@dataset.id), :method => :get, :disabled => ready, class: "btn btn-primary") %>
+  </div>
+  <div class="col-xs-1">
+    <%= button_to('Delete', dataset_path(@dataset.id), :method => :delete, class:"btn btn-danger",  data: { confirm: "Are you sure?" }) %></td>
+  </div>
+</div>
+</br>
 <% if  @dataset.annotated_tweets.size  > 0 %>
-<h3>Annotations</h3>
-<table>
-  <thead>
-    <tr>
-      <td>Id</td>
-      <td>Updated at</td>
-      <td>Text</td>
-      <td>Annotation</td>
-      <td></td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @dataset.annotated_tweets.order(updated_at: :DESC).each do |t| %>
-    <tr>
-      <td><%= t.id %></td>
-      <td><%= t.updated_at.in_time_zone("Caracas").strftime('%F %R')%></td>
-      <td><%= t.text %></td>
-      <td><%= t.readable_annotation.capitalize %></td>
-      <td><%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
-      <%= hidden_field(:dataset, :tweet_id, value: t.id) %>
-      <%= hidden_field(:dataset, :annotation, value: nil) %>
-      <%= submit_tag("Reset") %>
-      <% end %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="jumbotron">
+  <div class="table-responsive">
+    <table class="table table-hover" width="100%">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Updated at</td>
+          <td>Text</td>
+          <td>Annotation</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @dataset.annotated_tweets.order(updated_at: :DESC).each do |t| %>
+        <tr>
+          <td><%= t.id %></td>
+          <td><%= t.updated_at.in_time_zone("Caracas").strftime('%F %R')%></td>
+          <td><%= t.text %></td>
+          <td><p class="lead text-center"><%= t.readable_annotation.capitalize %></p></td>
+          <td><%= form_for @dataset, url: dataset_path(@dataset.id) do |form| %>
+          <%= hidden_field(:dataset, :tweet_id, value: t.id) %>
+          <%= hidden_field(:dataset, :annotation, value: nil) %>
+          <%= submit_tag("Reset", class:"btn btn-warning") %>
+          <% end %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
 <% end %>

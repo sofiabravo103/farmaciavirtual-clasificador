@@ -6,9 +6,9 @@ class Tweet < ActiveRecord::Base
     when 0
       return 'irrelevant'
     when 1
-      return 'requesting'
+      return 'request'
     when 2
-      return 'offering'
+      return 'offer'
     end
   end
 end
