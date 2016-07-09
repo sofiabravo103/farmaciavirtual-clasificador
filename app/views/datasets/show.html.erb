@@ -26,9 +26,8 @@
         <tr>
           <td></td>
           <td>Updated at</td>
-          <td>Text</td>
           <td>Annotation</td>
-          <td></td>
+          <td>Text</td>
         </tr>
       </thead>
       <tbody>
@@ -40,8 +39,8 @@
           <%= submit_tag("Reset", class:"btn btn-warning") %>
           <% end %></td>
           <td><%= t.updated_at.in_time_zone("Caracas").strftime('%F %R')%></td>
-          <td><%= t.text %></td>
           <td><p class="lead text-center"><%= t.readable_annotation.capitalize %></p></td>
+          <td><%= t.text %></td>
         </tr>
         <% end %>
       </tbody>
