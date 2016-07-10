@@ -25,7 +25,7 @@ class DatasetsController < ApplicationController
 
     # dataset is done
     unless @tweet = @dataset.get_unannotated_tweet
-      redirect_to dataset_path(@dataset.id, tweet_id: @tweet.id)
+      redirect_to dataset_path(@dataset.id)
     end
   end
 
@@ -36,6 +36,7 @@ class DatasetsController < ApplicationController
     end
     @tweet = Tweet.find(params[:dataset][:tweet_id])
     @tweet.update(annotation: params[:dataset][:annotation])
+    @dataset.update(updated_at: DateTime.now)
     if params[:dataset][:annotation] != ""
       redirect_to edit_dataset_path(@dataset.id)
     else
