@@ -62,7 +62,7 @@
       <% end %>
     </div>
     <div class="col-xs-3">
-      <%= button_tag(edit_dataset_path(@dataset.id), :method => :get, class: "btn btn-primary btn-lg button-annotate") do %>
+      <%= link_to(edit_dataset_path(@dataset.id), :method => :get, class: "btn btn-primary btn-lg button-annotate") do %>
         <%= image_tag("doubt.png", size: "50x50", class:"square-annotate-img") %>
         </br>
         <span class="span-annotate">Not sure</span>
