@@ -16,6 +16,7 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
     </thead>
     <tbody>
       <% @datasets.order(updated_at: :DESC).each do |d| %>
@@ -34,6 +35,7 @@
         </td>
         <td><%= button_to('Annotate', edit_dataset_path(d.id), :method => :get, :disabled => ready, class:"btn btn-primary") %></td>
         <td><%= button_to('Show', dataset_path(d.id), :method => :get, class:"btn btn-success") %></td>
+        <td><%= link_to "Export", download_path(d.id), :method =>  :get,  class:"btn btn-success" %></td>
         <td><%= button_to('Delete', dataset_path(d.id), :method => :delete,  data: { confirm: "Are you sure?" }, class:"btn btn-danger") %></td>
       </tr>
       <% end %>

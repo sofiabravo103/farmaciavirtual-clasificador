@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   put 'users/:id/make_admin' => 'users#make_admin', as: :make_admin
   get 'project' => 'static_pages#project', as: :project
   get 'instructions' => 'static_pages#instructions', as: :instructions
+  get 'dataset/:id/download' => 'datasets#download', as: :download
 
   devise_for :users
   resources :datasets

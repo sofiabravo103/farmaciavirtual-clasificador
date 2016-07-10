@@ -59,6 +59,20 @@ class DatasetsController < ApplicationController
     @dataset = Dataset.find(params[:id])
   end
 
+  def download
+    unless current_user.has_role? :admin
+      render(:file => File.join(Rails.root, 'public/403.html'), \
+        :status => 403, :layout => false)
+      return
+    end
+    @dataset = Dataset.find(params[:id])
+    time = DateTime.now.in_time_zone("Caracas").strftime('%s')
+    send_data @dataset.to_csv,
+      filename: "annotated_export_#{time}.csv",
+      :type => 'text/csv',
+      disposition: 'attachment'
+  end
+
   def new
     unless current_user.has_role? :admin
       render(:file => File.join(Rails.root, 'public/403.html'), \
@@ -101,6 +115,9 @@ class DatasetsController < ApplicationController
 
   private
 
+  def generate_csv
+
+  end
 
   def bulk_insert_tweets(tweets)
     ActiveRecord::Base.transaction do

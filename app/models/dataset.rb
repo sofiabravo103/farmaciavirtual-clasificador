@@ -17,4 +17,12 @@ class Dataset < ActiveRecord::Base
     self.annotated_tweets.size * 100 / self.tweets.size
   end
 
+  def to_csv
+    csv_text = ''
+    self.annotated_tweets.each do |tweet|
+      csv_text << "#{tweet.twitter_id};#{tweet.text};#{tweet.annotation}\n"
+    end
+    csv_text
+  end
+
 end
