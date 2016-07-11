@@ -3,6 +3,7 @@ class DatasetsController < ApplicationController
 
   def index
     @datasets = Dataset.all
+    @total_annotated = @datasets.collect {|d| d.annotated_tweets.size}.reduce(:+)
     winner_amount = 0
     @winners = []
     User.all.each do |u|

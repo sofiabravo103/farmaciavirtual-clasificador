@@ -39,6 +39,19 @@
         <td><%= button_to('Delete', dataset_path(d.id), :method => :delete,  data: { confirm: "Are you sure?" }, class:"btn btn-danger") %></td>
       </tr>
       <% end %>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= @total_annotated %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
 </div>
