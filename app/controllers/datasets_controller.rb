@@ -74,6 +74,25 @@ class DatasetsController < ApplicationController
       disposition: 'attachment'
   end
 
+  def download_all
+    unless current_user.has_role? :admin
+      render(:file => File.join(Rails.root, 'public/403.html'), \
+        :status => 403, :layout => false)
+      return
+    end
+
+    time = DateTime.now.in_time_zone("Caracas").strftime('%s')
+    exports = ''
+    Dataset.all.each do |dataset|
+      exports << dataset.to_csv
+    end
+
+    send_data exports,
+      filename: "annotated_export_#{time}.csv",
+      :type => 'text/csv',
+      disposition: 'attachment'
+  end
+
   def new
     unless current_user.has_role? :admin
       render(:file => File.join(Rails.root, 'public/403.html'), \

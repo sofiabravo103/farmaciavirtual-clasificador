@@ -2,6 +2,8 @@
 <% content_for :dataset_active do %>active<% end %>
 <h2>Datasets</h2>
 
+<%= link_to "Export all annotated tweets", download_all_path, :method =>  :get,  class:"btn btn-success" %>
+</br></br>
 <div class="jumbotron">
   <div class="table-responsive " >
     <table class="table button-table table-hover" width="100%">

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'project' => 'static_pages#project', as: :project
   get 'instructions' => 'static_pages#instructions', as: :instructions
   get 'dataset/:id/download' => 'datasets#download', as: :download
+  get 'dataset/download' => 'datasets#download_all', as: :download_all
 
   devise_for :users
   resources :datasets
