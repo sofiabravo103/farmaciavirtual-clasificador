@@ -1,6 +1,6 @@
 class Tweet < ActiveRecord::Base
   belongs_to :dataset
-  validates_inclusion_of :annotation, :in => [0, 1, 2], on: :update
+  validates_inclusion_of :annotation, :in => [0, 1, 2, nil], on: :update
 
   def readable_annotation
     case self.annotation
